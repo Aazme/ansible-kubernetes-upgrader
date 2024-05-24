@@ -1,0 +1,4 @@
+- name: Upgrade worker nodes
+  hosts: workers
+  roles:
+    - k8s_upgrade

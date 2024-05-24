@@ -1,0 +1,8 @@
+- name: Upgrade other master nodes
+  hosts: masters
+  roles:
+    - k8s_upgrade
+  tasks:
+    - name: Exclude first master node
+      ansible.builtin.include_tasks: tasks/upgrade_master.yml
+      when: inventory_hostname != "master1"

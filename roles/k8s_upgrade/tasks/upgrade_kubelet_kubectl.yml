@@ -1,0 +1,11 @@
+- name: Unhold and upgrade kubelet and kubectl
+  command: |
+    apt-mark unhold kubelet kubectl && \
+    apt-get update && \
+    apt-get install -y kubelet="{{ kubeadm_version }}" kubectl="{{ kubeadm_version }}" && \
+    apt-mark hold kubelet kubectl
+
+- name: Reload and restart kubelet
+  command: |
+    systemctl daemon-reload
+    systemctl restart kubelet

@@ -1,0 +1,6 @@
+- name: Unhold and upgrade kubeadm
+  command: |
+    apt-mark unhold kubeadm && \
+    apt-get update && \
+    apt-get install -y kubeadm="{{ kubeadm_version }}{{ kubeadm_version_apt }}" && \
+    apt-mark hold kubeadm

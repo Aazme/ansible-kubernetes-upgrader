@@ -1,0 +1,2 @@
+- name: Backup etcd
+  command: ETCDCTL_API=3 etcdctl --endpoints https://localhost:2379 snapshot save /etc/kubernetes/snapshot.db --cacert="/etc/kubernetes/pki/etcd/ca.crt" --cert="/etc/kubernetes/pki/etcd/server.crt" --key="/etc/kubernetes/pki/etcd/server.key"

@@ -1,0 +1,5 @@
+- name: Cordon the node
+  command: kubectl cordon {{ inventory_hostname }}
+
+- name: Drain the node
+  command: kubectl drain {{ inventory_hostname }} --ignore-daemonsets --delete-emptydir-data

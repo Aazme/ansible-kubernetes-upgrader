@@ -1,0 +1,22 @@
+- name: Backup etcd
+  include_tasks: backup_etcd.yml
+
+- name: Update repositories
+  include_tasks: update_repos.yml
+
+- name: Copy kubeconfig
+  template:
+    src: admin.conf.j2
+    dest: /root/admin.conf
+
+- name: Cordon and drain node
+  include_tasks: cordon_drain_node.yml
+
+- name: Upgrade kubeadm
+  include_tasks: upgrade_kubeadm.yml
+
+- name: Upgrade kubelet and kubectl
+  include_tasks: upgrade_kubelet_kubectl.yml
+
+- name: Uncordon node
+  include_tasks: uncordon_node.yml

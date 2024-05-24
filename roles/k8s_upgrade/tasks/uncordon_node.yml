@@ -1,0 +1,2 @@
+- name: Uncordon the node
+  command: kubectl uncordon {{ inventory_hostname }}

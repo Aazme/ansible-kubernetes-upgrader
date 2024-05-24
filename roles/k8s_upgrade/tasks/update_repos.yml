@@ -1,0 +1,12 @@
+- name: Remove old Kubernetes repos
+  command: sudo rm -f /etc/apt/sources.list.d/kubernetes.list
+  ignore_errors: true
+
+- name: Add new Kubernetes repository key
+  command: curl -fsSL https://pkgs.k8s.io/core:/stable:/v{{ k8s_base_version }}/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+
+- name: Add new Kubernetes repository
+  command: echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v{{ k8s_base_version }}/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+- name: Update apt package list
+  command: sudo apt update
